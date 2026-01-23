@@ -40,12 +40,28 @@ git config --global user.name "chavdarbaykov"
 echo "Installing JetBrains Toolbox"
 TOOLBOX_DIR="$HOME/bin/jetbrains-toolbox"
 mkdir -p "$TOOLBOX_DIR"
-wget -O /tmp/jetbrains-toolbox.tar.gz "https://download.jetbrains.com/toolbox/jetbrains-toolbox-latest.tar.gz"
+wget -O /tmp/jetbrains-toolbox.tar.gz "https://data.services.jetbrains.com/products/download?platform=linux&code=TBA"
 tar -xzf /tmp/jetbrains-toolbox.tar.gz -C "$TOOLBOX_DIR" --strip-components=1
 rm /tmp/jetbrains-toolbox.tar.gz
 
 echo "Adding JetBrains Toolbox to PATH in .bashrc"
-echo 'export PATH="$HOME/bin/jetbrains-toolbox:$PATH"' >> ~/.bashrc
+echo 'export PATH="$HOME/bin/jetbrains-toolbox/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
 
-"$TOOLBOX_DIR/jetbrains-toolbox"
+echo "Setting up Java switcher"
+cat >> ~/.bashrc << 'EOF'
+
+# Java version switcher
+if [ -f ~/bin/java-switcher.sh ]; then
+  source ~/bin/java-switcher.sh
+  java21
+fi
+EOF
+
+echo "Installing Node Version Manager (nvm)"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm install --lts
+nvm use --lts
 
