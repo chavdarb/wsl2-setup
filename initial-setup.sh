@@ -37,9 +37,15 @@ echo "Configuring Git"
 git config --global user.email "chavdar.baykov@paysafe.com"
 git config --global user.name "chavdarbaykov"
 
-echo "Setting up Git repository"
-cd ~/bin
-git add .
-git commit -m "Initial commit: WSL2 setup scripts"
-git push -u origin master
+echo "Installing JetBrains Toolbox"
+TOOLBOX_DIR="$HOME/bin/jetbrains-toolbox"
+mkdir -p "$TOOLBOX_DIR"
+wget -O /tmp/jetbrains-toolbox.tar.gz "https://download.jetbrains.com/toolbox/jetbrains-toolbox-latest.tar.gz"
+tar -xzf /tmp/jetbrains-toolbox.tar.gz -C "$TOOLBOX_DIR" --strip-components=1
+rm /tmp/jetbrains-toolbox.tar.gz
+
+echo "Adding JetBrains Toolbox to PATH in .bashrc"
+echo 'export PATH="$HOME/bin/jetbrains-toolbox:$PATH"' >> ~/.bashrc
+
+"$TOOLBOX_DIR/jetbrains-toolbox"
 
