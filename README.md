@@ -1,53 +1,101 @@
-# WSL2 Setup
+# WSL2 Setup Scripts
 
+Automated setup scripts for configuring a fresh WSL2 development environment.
 
+## Overview
 
-## Getting started
+This repository contains scripts to quickly set up a complete development environment in WSL2, including:
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- **Graphics stack** for WSLg support
+- **Multiple Java versions** (8, 11, 17, 21) with a version switcher
+- **Google Chrome** for GUI browsing
+- **JetBrains Toolbox** for IDE management
+- **Node Version Manager (nvm)** with LTS Node.js
+- **SSH key generation** for GitLab
+- **Git configuration**
+- **Essential development tools**
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Quick Start
 
-## Add your files
+1. Clone this repository using HTTPS (no SSH key required initially):
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
+```bash
+git clone https://gitlab.paysafe.cloud/chavdarbaykov/wsl2-setup.git ~/bin
+cd ~/bin
 ```
-cd existing_repo
-git remote add origin https://gitlab.paysafe.cloud/chavdarbaykov/wsl2-setup.git
-git branch -M master
-git push -uf origin master
+
+2. Make the setup script executable and run it:
+
+```bash
+chmod +x initial-setup.sh
+./initial-setup.sh
 ```
 
-## Integrate with your tools
+3. Follow the prompts during installation:
+   - Enter a passphrase for your SSH key (or press Enter for no passphrase)
+   - Copy the displayed SSH public key and add it to your GitLab account
+   - Press any key to continue with the rest of the setup
 
-- [ ] [Set up project integrations](https://gitlab.paysafe.cloud/chavdarbaykov/wsl2-setup/-/settings/integrations)
+## What Gets Installed
 
-## Collaborate with your team
+### System Updates & Tools
+- Latest system packages via `apt update && apt upgrade`
+- Network tools (`net-tools`)
+- Graphics stack for WSLg (mesa-vulkan-drivers, vulkan-tools, etc.)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+### Java Development
+- OpenJDK 8, 11, 17, and 21
+- Java version switcher (`java-switcher.sh`) with commands:
+  - `java8`, `java11`, `java17`, `java21` - Switch Java versions
+  - `javaVersion` - Display current Java version and path
+- Default: Java 21
 
-## Test and Deploy
+### Web & GUI
+- Google Chrome (stable)
 
-Use the built-in continuous integration in GitLab.
+### Development Tools
+- JetBrains Toolbox (for IntelliJ IDEA, PyCharm, etc.)
+- Node Version Manager (nvm) with LTS Node.js
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### Git & SSH
+- Git configured with your email and name
+- SSH key generated for GitLab authentication
 
-***
+## Scripts Included
 
-# Editing this README
+### `initial-setup.sh`
+Main setup script that installs and configures everything listed above.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### `java-switcher.sh`
+Java version management utility sourced in `.bashrc`:
+- Ensures only one JDK is active in PATH at a time
+- Provides simple commands to switch between Java versions
+- Automatically sets Java 21 on shell startup
 
+## Post-Installation
+
+After running the setup:
+
+1. **Add your SSH key to GitLab**: Copy the public key displayed during setup to your GitLab SSH keys settings
+2. **Restart your terminal** or run `source ~/.bashrc` to load all environment changes
+3. **Launch JetBrains Toolbox**: The app will start automatically during setup
+4. **Verify installations**:
+   ```bash
+   java -version          # Should show Java 21
+   node -v                # Should show LTS Node.js
+   google-chrome --version
+   ```
+
+## Customization
+
+To customize the setup for your needs, edit `initial-setup.sh` before running it. Common changes:
+- Modify the default Java version (change `java21` to `java17`, etc.)
+- Adjust the email and name for Git configuration
+- Add or remove packages from the installation list
+
+## License
+
+This is a personal development setup repository.
 ## Suggestions for a good README
 
 Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
