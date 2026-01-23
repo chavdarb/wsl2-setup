@@ -33,3 +33,13 @@ echo ""
 read -p "Press any key to continue..." -n1 -s
 echo ""
 
+echo "Configuring Git"
+git config --global user.email "chavdar.baykov@paysafe.com"
+git config --global user.name "chavdarbaykov"
+
+echo "Setting up Git repository"
+cd ~/bin
+git add .
+git commit -m "Initial commit: WSL2 setup scripts"
+git push -u origin master
+
