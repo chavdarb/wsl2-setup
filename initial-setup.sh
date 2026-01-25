@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+echo "${USER} ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 
 echo "Update All"
+sudo add-apt-repository ppa:git-core/ppa
 sudo apt update && sudo apt upgrade -y
 
 echo "Install graphics stack"
@@ -12,23 +14,18 @@ sudo apt install -y net-tools
 echo "Installing jq"
 sudo apt install -yjq
 
-echo "Generating SSH key"
-ssh-keygen -o -t rsa -C "chavdar.baykov@paysafe.com"
-echo ""
-echo "Your SSH public key (add this to GitLab):"
-cat ~/.ssh/id_rsa.pub
-echo ""
-read -p "Press any key to continue..." -n1 -s
-echo ""
+echo "Installing make, unzip, ntpdate, wslu"
+sudo apt-get -y install make ntppdate wslu
 
-echo "Configuring Git"
-git config --global user.email "chavdar.baykov@paysafe.com"
-git config --global user.name "chavdarbaykov"
-
+bash ~/bin/setup-scripts/setup-git.sh
 bash ~/bin/setup-scripts/setup-chrome.sh
 bash ~/bin/setup-scripts/setup-java.sh
 bash ~/bin/setup-scripts/setup-nvm.sh
 bash ~/bin/setup-scripts/setup-jetbrains.sh
+bash ~/bin/setup-scripts/setup-docker.sh
+
+echo "Installing Maven"
+sudo apt install -y maven
 
 sudo apt autoremove -y
-echo "Initial setup completed. Please restart your terminal."
+echo "Initial setup completed. Please restart wsl using wsl --shutdown and then start your terminal again."
