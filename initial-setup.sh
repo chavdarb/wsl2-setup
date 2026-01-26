@@ -3,9 +3,7 @@ echo "${USER} ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 
 # The following directories are used as defaults by https://webinstall.dev/ (webi), but you can
 # SET THESE TO ANY USEFUL FOR YOU DIRECTORY
-source ~/bin/setup-scripts/setup-path.sh
-export INSTALL_HOME="${HOME}/.local/opt"
-export EXECUTION_DIR="${HOME}/.local/bin"
+source ./setup-scripts/setup-path.sh
 mkdir -p "${EXECUTION_DIR}"
 setup_path "${EXECUTION_DIR}"
 
@@ -19,13 +17,13 @@ sudo apt install -y mesa-vulkan-drivers vulkan-tools mesa-utils vulkan-tools glm
 echo "Installing make, zip, unzip, ntpdate, wslu, jq, net-tools"
 sudo apt-get -y install make zip unzip ntpdate wslu jq net-tools
 
-bash ~/bin/setup-scripts/setup-git.sh
-bash ~/bin/setup-scripts/setup-aws.sh
-bash ~/bin/setup-scripts/setup-chrome.sh
-bash ~/bin/setup-scripts/setup-java.sh
-bash ~/bin/setup-scripts/setup-nvm.sh
-bash ~/bin/setup-scripts/setup-jetbrains.sh
-bash ~/bin/setup-scripts/setup-docker.sh
+bash ./setup-scripts/setup-git.sh
+bash ./setup-scripts/setup-aws.sh
+bash ./setup-scripts/setup-chrome.sh
+bash ./setup-scripts/setup-java.sh
+bash ./setup-scripts/setup-nvm.sh
+bash ./setup-scripts/setup-jetbrains.sh
+bash ./setup-scripts/setup-docker.sh
 
 echo "Installing SDKMAN and Maven"
 curl -s "https://get.sdkman.io" | bash
