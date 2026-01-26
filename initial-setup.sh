@@ -14,8 +14,8 @@ sudo apt update && sudo apt upgrade -y
 echo "Install graphics stack"
 sudo apt install -y mesa-vulkan-drivers vulkan-tools mesa-utils vulkan-tools glmark2-wayland
 
-echo "Installing make, zip, unzip, ntpdate, wslu, jq, net-tools"
-sudo apt-get -y install make zip unzip ntpdate wslu jq net-tools
+echo "Installing make, zip, unzip, jq, net-tools"
+sudo apt-get -y install make zip unzip jq net-tools
 
 bash ./setup-scripts/setup-git.sh
 bash ./setup-scripts/setup-aws.sh
