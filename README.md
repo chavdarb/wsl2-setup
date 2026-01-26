@@ -73,6 +73,16 @@ Java version management utility sourced in `.bashrc`:
 
 ## Post-Installation
 
+## Installing JIdea
+
+Install JIdea using the `jetbrains-toolbox` and configure the following `Help->Edit Custom VM Options`
+
+```
+   -Dsun.java2d.uiScale=1
+   -Dawt.toolkit.name=WLToolkit
+   -Dsun.awt.wl.Shadow=false
+```
+
 After running the setup:
 
 1. **Add your SSH key to GitLab**: Copy the public key displayed during setup to your GitLab SSH keys settings
@@ -85,3 +95,4 @@ After running the setup:
    google-chrome --version
    jetbrains-toolbox      # should start jetbrains-toolbox
    ```
+
