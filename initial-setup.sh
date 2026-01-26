@@ -31,7 +31,7 @@ bash ./setup-scripts/setup-docker.sh
 
 echo "Installing SDKMAN and Maven"
 curl -s "https://get.sdkman.io" | bash
-source ~/.bashrc
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 sdk install maven
 
