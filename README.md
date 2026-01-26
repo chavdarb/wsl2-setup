@@ -23,8 +23,8 @@ This repository contains scripts to quickly set up a complete development enviro
 1. Clone this repository using HTTPS (no SSH key required initially):
 
 ```bash
-git clone https://gitlab.paysafe.cloud/chavdarbaykov/wsl2-setup.git ~/bin
-cd ~/bin
+git clone https://gitlab.paysafe.cloud/chavdarbaykov/wsl2-setup.git
+cd wsl2-setup
 ```
 
 2. Run the setup script:
