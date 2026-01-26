@@ -8,9 +8,12 @@ This repository contains scripts to quickly set up a complete development enviro
 
 - **Graphics stack** for WSLg support
 - **Multiple Java versions** (8, 11, 17, 21) with a version switcher
+- **SDKMAN** with Maven
 - **Google Chrome** for GUI browsing
 - **JetBrains Toolbox** for IDE management
 - **Node Version Manager (nvm)** with LTS Node.js
+- **Docker** with Docker Compose
+- **AWS CLI v2** with Session Manager Plugin
 - **SSH key generation** for GitLab
 - **Git configuration**
 - **Essential development tools**
@@ -40,14 +43,27 @@ cd ~/bin
 ### System Updates & Tools
 - Latest system packages via `apt update && apt upgrade`
 - Network tools (`net-tools`)
-- Graphics stack for WSLg (mesa-vulkan-drivers, vulkan-tools, etc.)
+- Essential build tools (`make`, `zip`, `unzip`)
+- System utilities (`ntpdate`, `wslu`, `jq`)
+- Graphics stack for WSLg (`mesa-vulkan-drivers`, `vulkan-tools`, `mesa-utils`, `glmark2-wayland`)
 
 ### Java Development
 - OpenJDK 8, 11, 17, and 21
+- SDKMAN with Maven
 - Java version switcher (`java-switcher.sh`) with commands:
   - `java8`, `java11`, `java17`, `java21` - Switch Java versions
   - `javaVersion` - Display current Java version and path
 - Default: Java 21
+
+### Containerization
+- Docker CE (Community Edition)
+- Docker Compose Plugin
+- Docker Buildx Plugin
+- User added to docker group (requires logout/login)
+
+### Cloud & AWS
+- AWS CLI v2
+- AWS Session Manager Plugin (SSM)
 
 ### Web & GUI
 - Google Chrome (stable)
@@ -57,13 +73,25 @@ cd ~/bin
 - Node Version Manager (nvm) with LTS Node.js
 
 ### Git & SSH
+- Git (latest from git-core PPA)
 - Git configured with your email and name
 - SSH key generated for GitLab authentication
 
 ## Scripts Included
 
 ### `initial-setup.sh`
-Main setup script that installs and configures everything listed above.
+Main setup script that orchestrates all installations and configurations.
+
+### `setup-scripts/`
+- **`setup-path.sh`** - PATH management utility
+- **`setup-git.sh`** - Git configuration and SSH key generation
+- **`setup-aws.sh`** - AWS CLI v2 and Session Manager Plugin installation
+- **`setup-chrome.sh`** - Google Chrome installation
+- **`setup-docker.sh`** - Docker CE and plugins installation
+- **`setup-java.sh`** - Multiple JDK versions installation
+- **`setup-jetbrains.sh`** - JetBrains Toolbox installation
+- **`setup-nvm.sh`** - Node Version Manager installation
+- **`java-switcher.sh`** - Java version management utility
 
 ### `java-switcher.sh`
 Java version management utility sourced in `.bashrc`:
@@ -91,8 +119,14 @@ After running the setup:
 4. **Verify installations**:
    ```bash
    java -version          # Should show Java 21
+   mvn -version           # Should show Maven
    node -v                # Should show LTS Node.js
+   docker --version       # Should show Docker version
+   aws --version          # Should show AWS CLI v2
+   python3 -V
+   jq --version
+   session-manager-plugin # Should show the AWS session manager plugin
    google-chrome --version
-   jetbrains-toolbox      # should start jetbrains-toolbox
+   jetbrains-toolbox      # Should start JetBrains Toolbox
    ```
 
