@@ -14,8 +14,12 @@ sudo apt update && sudo apt upgrade -y
 echo "Install graphics stack"
 sudo apt install -y mesa-vulkan-drivers vulkan-tools mesa-utils vulkan-tools glmark2-wayland
 
-echo "Installing make, zip, unzip, jq, net-tools"
-sudo apt-get -y install make zip unzip jq net-tools
+echo "Installing make, zip, unzip, jq, wslu,ntpdate,net-tools"
+sudo apt-get -y install make zip unzip ntpdate wslu jq net-tools
+
+# SSM helper script
+curl https://paysafe.pages.gitlab.paysafe.cloud/corporate/internal-tooling/aws-tools/ssm-to-ec2-node.sh -o "${EXECUTION_DIR}/ssm-to-ec2-node.sh"
+chmod +x "${EXECUTION_DIR}/ssm-to-ec2-node.sh"
 
 bash ./setup-scripts/setup-git.sh
 bash ./setup-scripts/setup-aws.sh
@@ -28,6 +32,7 @@ bash ./setup-scripts/setup-docker.sh
 echo "Installing SDKMAN and Maven"
 curl -s "https://get.sdkman.io" | bash
 source ~/.bashrc
+
 sdk install maven
 
 sudo apt autoremove -y
