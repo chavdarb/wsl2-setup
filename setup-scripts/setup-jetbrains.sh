@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source setup-path.sh
+source ./setup-scripts/setup-path.sh
 echo "Installing JetBrains Toolbox"
 TOOLBOX_DIR="${EXECUTION_DIR}/jetbrains-toolbox"
 mkdir -p "$TOOLBOX_DIR"
@@ -9,4 +9,4 @@ tar -xzf /tmp/jetbrains-toolbox.tar.gz -C "$TOOLBOX_DIR" --strip-components=1
 rm /tmp/jetbrains-toolbox.tar.gz
 
 echo "Adding JetBrains Toolbox to PATH in .bashrc"
-setup_path "$EXECUTION_DIR/jetbrains-toolbox/bin"
+setup_path "${EXECUTION_DIR}/jetbrains-toolbox/bin"

@@ -29,6 +29,7 @@ bash ./setup-scripts/setup-nvm.sh
 bash ./setup-scripts/setup-jetbrains.sh
 bash ./setup-scripts/setup-docker.sh
 
+# Install SDKMAN and Maven
 echo "Installing SDKMAN and Maven"
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
