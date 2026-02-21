@@ -18,15 +18,15 @@ echo "Installing make, zip, unzip, jq, wslu,ntpdate,net-tools"
 sudo apt-get -y install make zip unzip ntpdate wslu jq net-tools
 
 # SSM helper script
-curl https://paysafe.pages.gitlab.paysafe.cloud/corporate/internal-tooling/aws-tools/ssm-to-ec2-node.sh -o "${EXECUTION_DIR}/ssm-to-ec2-node.sh"
-chmod +x "${EXECUTION_DIR}/ssm-to-ec2-node.sh"
+# curl https://paysafe.pages.gitlab.paysafe.cloud/corporate/internal-tooling/aws-tools/ssm-to-ec2-node.sh -o "${EXECUTION_DIR}/ssm-to-ec2-node.sh"
+# chmod +x "${EXECUTION_DIR}/ssm-to-ec2-node.sh"
 
 bash ./setup-scripts/setup-git.sh
 bash ./setup-scripts/setup-aws.sh
 bash ./setup-scripts/setup-chrome.sh
 bash ./setup-scripts/setup-java.sh
 bash ./setup-scripts/setup-nvm.sh
-bash ./setup-scripts/setup-jetbrains.sh
+# bash ./setup-scripts/setup-jetbrains.sh
 bash ./setup-scripts/setup-docker.sh
 
 # Install SDKMAN and Maven
